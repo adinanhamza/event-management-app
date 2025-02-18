@@ -15,6 +15,11 @@ class Wedding extends StatelessWidget {
         centerTitle: true,
         
         iconTheme: IconThemeData(color: Colors.white),
+           actions: [
+          IconButton(onPressed: (){
+      
+          }, icon: Icon(Icons.my_library_add_outlined,color: Colors.white,))
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(

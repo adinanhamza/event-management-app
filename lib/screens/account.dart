@@ -22,6 +22,7 @@ class _AccountState extends State<Account> {
       //                 fontStyle: FontStyle.italic,
       //                 fontWeight: FontWeight.bold),
       //           ),
+                
       //           leading:  Icon(Icons.arrow_back,color: Colors.white,size: 25,),
       //           actions: [
       //              Icon(Icons.edit,size: 25,color: Colors.white,)
@@ -32,21 +33,7 @@ class _AccountState extends State<Account> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Icon(Icons.arrow_back,color: Colors.white,size: 25,),
-                Text(
-                  'Profile',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.bold),
-                ),
-                Icon(Icons.edit,size: 25,color: Colors.white,)
-              ],
-            ),
+
             SizedBox(
               height: 40,
             ),

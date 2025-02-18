@@ -12,6 +12,11 @@ class Social extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.black,
         iconTheme: IconThemeData(color: Colors.white),
+           actions: [
+          IconButton(onPressed: (){
+      
+          }, icon: Icon(Icons.my_library_add_outlined,color: Colors.white,))
+        ],
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),

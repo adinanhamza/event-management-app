@@ -9,6 +9,13 @@ class Special extends StatelessWidget {
         title: Text("Special Events", style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.black,
         iconTheme: IconThemeData(color: Colors.white),
+        centerTitle: true
+        ,
+        actions: [
+          IconButton(onPressed: (){
+      
+          }, icon: Icon(Icons.my_library_add_outlined,color: Colors.white,))
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -34,7 +41,18 @@ class Special extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset("asset/privatepeo.jpg", fit: BoxFit.cover),
               ),
+
               SizedBox(height: 20),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset("asset/privatelux.jpg", fit: BoxFit.cover),
+              ),
+               SizedBox(height: 20),
+               ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset("asset/privatetema.jpg", fit: BoxFit.cover),
+              ),
+               SizedBox(height: 20),
               Text(
                 "Our Services",
                 style: TextStyle(
@@ -50,7 +68,7 @@ class Special extends StatelessWidget {
                 subtitle: Text("Exclusive venues, premium service, and high-end experiences.", style: TextStyle(color: Colors.white70)),
               ),
               
-              SizedBox(height: 20),
+             
               ListTile(
                 leading: Icon(Icons.music_note, color: Colors.white),
                 title: Text("Live Entertainment", style: TextStyle(color: Colors.white)),
@@ -78,3 +96,8 @@ class Special extends StatelessWidget {
     );
   }
 }
+
+
+
+
+

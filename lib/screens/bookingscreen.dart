@@ -339,6 +339,8 @@ String date = datecontroller.text.toString();
 String venue = venuecontroller.text;
 String location = locationcontroller.text;
 
+
+
 if(name.isEmpty&&email.isEmpty&&date.isEmpty&&venue.isEmpty&& phone.isEmpty||location.isEmpty){
  return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     content: Text('invalid format or fill the form'),

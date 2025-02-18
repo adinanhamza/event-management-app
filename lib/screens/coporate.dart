@@ -14,6 +14,11 @@ class Corporate extends StatelessWidget {
         leading: IconButton(onPressed: (){
           Navigator.of(context).pop();
         }, icon: Icon(Icons.arrow_back,color: Colors.white,)),
+           actions: [
+          IconButton(onPressed: (){
+      
+          }, icon: Icon(Icons.my_library_add_outlined,color: Colors.white,))
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

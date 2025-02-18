@@ -20,6 +20,7 @@ final  String? date;
    Editbooking({super.key,required this.index,required this.name,required this.email,required this.phone,required this.date,required this.venue,required this.location});
 
   @override
+ 
   State<Editbooking> createState() => _editbookingState();
 }
 
@@ -28,13 +29,25 @@ class _editbookingState extends State<Editbooking> {
 File? selectedImage; 
   DateTime? selecteddate;
 
-TextEditingController namecontroller = TextEditingController();
-TextEditingController phonecontroller = TextEditingController();
-TextEditingController emailcontroller = TextEditingController();
-TextEditingController datecontroller = TextEditingController();
-TextEditingController locationcontroller = TextEditingController();
-TextEditingController venuecontroller = TextEditingController();
+late  TextEditingController namecontroller = TextEditingController();
+late   TextEditingController phonecontroller = TextEditingController();
+late  TextEditingController emailcontroller = TextEditingController();
+late  TextEditingController datecontroller = TextEditingController();
+late    TextEditingController locationcontroller = TextEditingController();
+late    TextEditingController venuecontroller = TextEditingController();
   @override
+  void initState() {
+    super.initState();
+    // Initialize controllers with data from AddScreen
+    namecontroller = TextEditingController(text: widget.name);
+    phonecontroller = TextEditingController(text: widget.phone);
+    emailcontroller = TextEditingController(text: widget.email);
+    datecontroller = TextEditingController(text: widget.date);
+    locationcontroller = TextEditingController(text: widget.location);
+    venuecontroller = TextEditingController(text: widget.venue);
+    
+
+  }
   Widget build(BuildContext context) {
   
     return SafeArea(child: 
