@@ -13,7 +13,7 @@ import 'package:event_managment/model/model.dart';
 import 'package:event_managment/model/vendormodel.dart';
 import 'package:event_managment/screens/account.dart';
 import 'package:event_managment/screens/coporate.dart';
-import 'package:event_managment/screens/bookingscreen.dart';
+import 'package:event_managment/screens/booking.dart';
 import 'package:event_managment/screens/details.dart';
 import 'package:event_managment/screens/listevent.dart';
 import 'package:event_managment/screens/social.dart';

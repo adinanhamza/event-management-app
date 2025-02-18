@@ -17,7 +17,8 @@ class Editbooking extends StatefulWidget {
 final  String? date;
   final String? venue;
  final  String? location;
-   Editbooking({super.key,required this.index,required this.name,required this.email,required this.phone,required this.date,required this.venue,required this.location});
+ final  String? imagePath;
+   Editbooking({super.key,required this.index,required this.name,required this.email,required this.phone,required this.date,required this.venue,required this.location, required this.imagePath });
 
   @override
  
@@ -26,7 +27,7 @@ final  String? date;
 
 class _editbookingState extends State<Editbooking> {
   
-File? selectedImage; 
+ late File? selectedImage; 
   DateTime? selecteddate;
 
 late  TextEditingController namecontroller = TextEditingController();
@@ -45,7 +46,12 @@ late    TextEditingController venuecontroller = TextEditingController();
     datecontroller = TextEditingController(text: widget.date);
     locationcontroller = TextEditingController(text: widget.location);
     venuecontroller = TextEditingController(text: widget.venue);
-    
+    selectedImage = File(widget.imagePath!);
+    if (widget.imagePath != null && widget.imagePath!.isNotEmpty) {
+    selectedImage = File(widget.imagePath!);
+  } else {
+    selectedImage = null; // Handle the case where no image was selected
+  }
 
   }
   Widget build(BuildContext context) {

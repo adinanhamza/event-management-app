@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:event_managment/functions/dbfunctions.dart';
 import 'package:event_managment/model/model.dart';
 import 'package:event_managment/screens/details.dart';
-import 'package:event_managment/screens/editbooking.dart';
+import 'package:event_managment/screens/edit.dart';
 import 'package:flutter/material.dart';
 
 class Listevent extends StatefulWidget {
@@ -89,7 +89,7 @@ class _ListeventState extends State<Listevent> {
                           
                           ),),
                           trailing: IconButton(onPressed: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Editbooking(index: index, name: data.name, email: data.email, phone:data.phone , date: data.date, venue: data.venue, location: data.location),),);
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Editbooking(index: index, name: data.name, email: data.email, phone:data.phone , date: data.date, venue: data.venue, location: data.location,imagePath: data.image,),),);
 
                           }, icon: Icon(Icons.edit,color: Colors.black,size: 22,)),
                         ),
