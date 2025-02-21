@@ -48,12 +48,12 @@ class AppConstants {
       id: '2',
       name: 'Bluewind Blogs',
       description: 'Photography & videography',
-      imagepath: 'asset/mrgb&w.jpg',
+      imagepath: 'asset/handevnt.jpg',
     ),
     // Add other vendors...
     vendormodel(id: '3', name: 'Co-Op Event', description: 'Coperate program', imagepath: 'asset/eventcontroller.jpg'),
     vendormodel(id: '4', name: 'Decor Premium', description: 'decoration arts', imagepath:'asset/night eve.webp'),
-    vendormodel(id: '5', name: 'Vench Events', description: 'premium events', imagepath: 'asset/night eve.webp')
+    vendormodel(id: '5', name: 'Vench Events', description: 'premium events', imagepath: 'asset/weddingstunning.webp')
   ];
 
   // Navigation
@@ -64,42 +64,7 @@ class AppConstants {
     {'label': 'Profile', 'icon': 'person'},
   ];
 }
-                                       // BOOKINGSCREEN
-
-
-      
-  // // Booking Screen Texts
-  // static const String bookingTitle = 'TELL US ABOUT YOUR EVENT';
-  // static const String bookingSubtitle = 'Fill in this handy form below and we will get back to you promptly';
-  // static const String addImageText = 'Add Image';
-  // static const String nameLabel = 'Name';
-  // static const String phoneLabel = 'Enter Your Phone Number';
-  // static const String emailLabel = 'Enter Your Email here';
-  // static const String dateLabel = 'Enter Date here';
-  // static const String locationLabel = 'Enter location here';
-  // static const String eventTypeLabel = 'Select Event';
-  // static const String submitButtonText = 'Submit';
-  // static const String invalidFormMessage = 'Invalid format or fill the form';
-  // static const String submissionSuccessMessage = 'Submitted';
-  
-  // // Event Types
-  // static const List<String> eventTypes = [
-  //   'Wedding',
-  //   'Birthday',
-  //   'Corporate',
-  //   'Private',
-  //   'Special'
-  // ];
-
-  // // Image Paths
-  // static const String avatarPlaceholder = 'asset/avatarcontact.jpg';
-
-
-
-                                      // ACCOUNTSCREEN
-
-    
-                                         
+                                       // BOOKINGSCREEN                                       
 
 
                                          // COROPERATE SCREEN

@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'package:event_managment/screens/bottomnav.dart';
-import 'package:event_managment/screens/home/homescreen.dart';
-import 'package:event_managment/screens/sample.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
