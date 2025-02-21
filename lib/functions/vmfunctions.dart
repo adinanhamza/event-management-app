@@ -10,7 +10,7 @@ Future<void> togglefavorite(vendormodel vendor) async {
 
   if (vendor.isfavorited == true) {
     
-    await vendor.save(); // ✅ Save changes directly in Hive
+    await vendor.save(); 
 
   }
   getallfavoritevendors();
@@ -20,18 +20,12 @@ Future<void> togglefavorite(vendormodel vendor) async {
   vendorlistnotifier.value.clear();
   vendorlistnotifier.value.addAll(vbox.values);
   vendorlistnotifier.notifyListeners();
-  
-
 }
 
 Future<void> deletefavorite(vendormodel vendor,int index) async {
   final vbox = await  Hive.openBox<vendormodel>('vendordatabase');
-  
-
   if (vendor.isfavorited == false) {
     await vbox.deleteAt(index);
-   // ✅ Save changes directly in Hive
-
   }
   getallfavoritevendors();
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'constants.dart';
+
 
 class Corporate extends StatelessWidget {
   const Corporate({super.key});
@@ -9,15 +11,20 @@ class Corporate extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: Text('Corporate Events', style: TextStyle(color: Colors.white,fontSize: 22,fontWeight: FontWeight.bold)),
+        title: Text(CorporateEventConstants.appBarTitle, 
+            style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
         centerTitle: true,
-        leading: IconButton(onPressed: (){
-          Navigator.of(context).pop();
-        }, icon: Icon(Icons.arrow_back,color: Colors.white,)),
-           actions: [
-          IconButton(onPressed: (){
-      
-          }, icon: Icon(Icons.my_library_add_outlined,color: Colors.white,))
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          }, 
+          icon: Icon(Icons.arrow_back, color: Colors.white)
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {}, 
+            icon: Icon(Icons.my_library_add_outlined, color: Colors.white)
+          )
         ],
       ),
       body: Padding(
@@ -26,44 +33,22 @@ class Corporate extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Plan your next corporate event with us.',
+              CorporateEventConstants.pageHeading,
               style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
             Text(
-              'From business conferences to networking meets, we provide top-notch venues and services to make your event a success.',
+              CorporateEventConstants.pageSubheading,
               style: TextStyle(color: Colors.white70, fontSize: 14),
             ),
             SizedBox(height: 20),
             Expanded(
-              child: ListView(
-                children: [
-                  corporateEventCard(
-                    'Business Conference',
-                    'asset/coporatebusinees.jpg',
-                    'Host professional conferences with top-tier facilities.',
-                  ),
-                  corporateEventCard(
-                    'Networking Meet',
-                    'asset/coporatenet.jpeg',
-                    'Engage and expand your business network in style.',
-                  ),
-                  corporateEventCard(
-                    'Award Ceremonies',
-                    'asset/coperate managmnt.jpg',
-                    'Celebrate achievements with an elegant corporate setup.',
-                  ),
-                  corporateEventCard(
-                    'Product Launch',
-                    'asset/coporateproduct.jpg',
-                    'Showcase your latest products with a stunning launch event.',
-                  ),
-                  corporateEventCard(
-                    'Workshops & Seminars',
-                    'asset/coporatework.jpeg',
-                    'Conduct knowledge-sharing sessions with professionals.',
-                  ),
-                ],
+              child: ListView.builder(
+                itemCount: CorporateEventConstants.eventsList.length,
+                itemBuilder: (context, index) {
+                  final event = CorporateEventConstants.eventsList[index];
+                  return corporateEventCard(event.title, event.imagePath, event.description);
+                },
               ),
             ),
           ],
@@ -82,7 +67,7 @@ class Corporate extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
-            child: Image.asset(imagePath, fit: BoxFit.cover, width: double.infinity, height: 180,),
+            child: Image.asset(imagePath, fit: BoxFit.cover, width: double.infinity, height: 180),
           ),
           Padding(
             padding: const EdgeInsets.all(12.0),

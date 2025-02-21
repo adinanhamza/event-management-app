@@ -1,5 +1,5 @@
+import 'package:event_managment/screens/constants.dart';
 import 'package:flutter/material.dart';
-
 class Account extends StatefulWidget {
   const Account({super.key});
 
@@ -11,246 +11,171 @@ class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-      backgroundColor: Colors.black,
-      // appBar: AppBar(
-      //   title:  Text(
-      //             'Profile',
-      //             style: TextStyle(
-      //                 color: Colors.white,
-      //                 fontSize: 25,
-      //                 fontStyle: FontStyle.italic,
-      //                 fontWeight: FontWeight.bold),
-      //           ),
-                
-      //           leading:  Icon(Icons.arrow_back,color: Colors.white,size: 25,),
-      //           actions: [
-      //              Icon(Icons.edit,size: 25,color: Colors.white,)
-      //           ],
-      //           backgroundColor: Colors.black,
-      //           centerTitle: true,
-      // ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-
-            SizedBox(
-              height: 40,
-            ),
-            CircleAvatar(
-              backgroundImage: AssetImage('asset/profile.jpg'),
-              radius: 45,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Column(
-              children: [
-                Text(
-                  'Jhony Walker',
-                  style: TextStyle(
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 40),
+              CircleAvatar(
+                backgroundImage: AssetImage(accountscreen.profileImage),
+                radius: 45,
+              ),
+              const SizedBox(height: 20),
+              Column(
+                children: [
+                  Text(
+                    accountscreen.accountName,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.normal),
-                ),
-                Text(
-                  'Event Client ',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w400,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
-                  children: [
-                    Text(
-                      'Event',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  Text(
+                   accountscreen.accountRole,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
                     ),
-                    Text(
-                      '26',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Text(
-                      'Attending',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      '14',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Text(
-                      'Following',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      '137',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            SizedBox(height: 20,),
-            Divider(
-              thickness: 10,
-              color: Colors.white24,
-        
-            ),
-            SizedBox(height: 20,),
-            Row(
-              children: [
-                Text('Persnol information',style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22
-                  ,
-                  fontWeight: FontWeight.w400
-                ),),
-              ],
-            ),
-             SizedBox(height: 10,),
-            ListTile(
-              leading: Icon(Icons.email,size: 30,color: Colors.white,),
-              title: Text('Email',style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold
-              ),),
-              subtitle: Text('jhonywalker67@gmail.com',style: TextStyle(
-                fontSize: 15,
-                color: Colors.white54
-              ),),
-            ),
-             ListTile(
-              leading: Icon(Icons.phone,size: 30,color: Colors.white,),
-              title: Text('Phone',style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold
-              ),),
-              subtitle: Text('+91 9897434752',style: TextStyle(
-                fontSize: 15,
-                color: Colors.white54
-              ),),
-            ),
-             ListTile(
-              leading: Icon(Icons.location_on,size: 30,color: Colors.white,),
-              title: Text('Location',style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold
-              ),),
-              subtitle: Text('New York , USA',style: TextStyle(
-                fontSize: 15,
-                color: Colors.white54
-              ),),
-            ),
-         ListTile(
-            leading: Icon(Icons.work,size: 30,color: Colors.white,),
-            title: Text('Organization',style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold
-            ),),
-            subtitle: Text('Event Client',style: TextStyle(
-              fontSize: 15,
-              color: Colors.white54
-            ),),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildCountColumn('Event',accountscreen.eventsCount),
+                  _buildCountColumn('Attending', accountscreen.attendingCount),
+                  _buildCountColumn('Following',accountscreen.followingCount),
+                ],
+              ),
+              const SizedBox(height: 20),
+              const Divider(thickness: 10, color: Colors.white24),
+              const SizedBox(height: 20),
+              _buildSectionTitle(accountscreen.personalInfoTitle),
+              _buildInfoTile(
+                icon: Icons.email,
+                title: accountscreen.emailaccount,
+                subtitle:accountscreen.userEmail,
+              ),
+              _buildInfoTile(
+                icon: Icons.phone,
+                title: accountscreen.phoneaccount,
+                subtitle: accountscreen.userPhone,
+              ),
+              _buildInfoTile(
+                icon: Icons.location_on,
+                title: accountscreen.locationaccount,
+                subtitle: accountscreen.userLocation,
+              ),
+              _buildInfoTile(
+                icon: Icons.work,
+                title: accountscreen.organizationLabel,
+                subtitle: accountscreen.userOrganization,
+              ),
+              const Divider(thickness: 10, color: Colors.white24),
+              const SizedBox(height: 20),
+              _buildSectionTitle(accountscreen.settingsTitle),
+              _buildSettingsTile(
+                icon: Icons.notifications,
+                title: accountscreen.notificationsLabel,
+              ),
+              _buildSettingsTile(
+                icon: Icons.privacy_tip,
+                title:accountscreen.privacyLabel,
+              ),
+              _buildSettingsTile(
+                icon: Icons.payment,
+                title: accountscreen.paymentLabel,
+              ),
+            ],
           ),
-           Divider(
-              thickness: 10,
-              color: Colors.white24,
-        
-            ),
-           SizedBox(height: 20,),
-           Row(
-              children: [
-                Text('Settings & Privacy',style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22
-                  ,
-                  fontWeight: FontWeight.w400
-                ),),
-              ],
-            ),
-             SizedBox(height: 10,),
-              ListTile(
-              leading: Icon(Icons.notifications,size: 30,color: Colors.white,),
-              title: Text('Notification Prefrences',style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold
-              ),),
-             trailing: Icon(Icons.arrow_forward_ios),
-            ),
-            
-              ListTile(
-              leading: Icon(Icons.privacy_tip,size: 30,color: Colors.white,),
-              title: Text('Privacy Settings',style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold
-              ),),
-             trailing: Icon(Icons.arrow_forward_ios),
-            ),
-                          ListTile(
-              leading: Icon(Icons.payment,size: 30,color: Colors.white,),
-              title: Text('Payment Methods',style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold
-              ),),
-             trailing: Icon(Icons.arrow_forward_ios),
-            ),
-            
-        
-          ],
         ),
       ),
-    ));
+    );
+  }
+
+  Widget _buildCountColumn(String title, String count) {
+    return Column(
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          count,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 15,
+            fontWeight: FontWeight.w300,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSectionTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 22,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildInfoTile({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+  }) {
+    return ListTile(
+      leading: Icon(icon, size: 30, color: Colors.white),
+      title: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      subtitle: Text(
+        subtitle,
+        style: const TextStyle(
+          fontSize: 15,
+          color: Colors.white54,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSettingsTile({
+    required IconData icon,
+    required String title,
+  }) {
+    return ListTile(
+      leading: Icon(icon, size: 30, color: Colors.white),
+      title: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      trailing: const Icon(Icons.arrow_forward_ios, color: Colors.white),
+    );
   }
 }

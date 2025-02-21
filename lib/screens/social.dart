@@ -1,122 +1,109 @@
+import 'package:event_managment/screens/constants.dart';
 import 'package:flutter/material.dart';
 
+
 class Social extends StatelessWidget {
+  const Social({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        title: Text("Social Events", style: TextStyle(color: Colors.white),
-        
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.black,
-        iconTheme: IconThemeData(color: Colors.white),
-           actions: [
-          IconButton(onPressed: (){
-      
-          }, icon: Icon(Icons.my_library_add_outlined,color: Colors.white,))
-        ],
-      ),
+      appBar: _buildAppBar(context),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "Celebrate with Style",
-              style: TextStyle(fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-            Text(
-              "Social events bring people together to celebrate special moments. Whether it's a birthday, anniversary, or casual gathering, our team ensures an unforgettable experience with top-tier service and ambiance.",
-              style: TextStyle(fontSize: 16, color: Colors.white70),
-            ),
-            SizedBox(height: 20),
-            Container(
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                image: DecorationImage(
-                  image: AssetImage('asset/socialpu - Copy.jpg'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            SizedBox(height: 20),
-            Text(
-              "Memorable Moments",
-              style: TextStyle(fontSize: 22, color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-            Text(
-              "From elegant dinners to lively parties, our team curates social gatherings tailored to your vision. Let us handle the details while you enjoy every moment.",
-              style: TextStyle(fontSize: 16, color: Colors.white70),
-            ),
-            SizedBox(height: 20),
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    height: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      image: DecorationImage(
-                        image: AssetImage('asset/socialgettogether.jpg'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 10),
-                Expanded(
-                  child: Container(
-                    height: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      image: DecorationImage(
-                        image: AssetImage('asset/socialfestival.jpeg'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-               SizedBox(height: 20),
-            Container(
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                image: DecorationImage(
-                  image: AssetImage('asset/socialinpublic.png'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            SizedBox(height: 20),
-            Text(
-              "Customizable Packages",
-              style: TextStyle(fontSize: 22, color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-            Text(
-              "We offer a variety of packages to suit your event size and style. From intimate gatherings to grand celebrations, find the perfect setup for your occasion.",
-              style: TextStyle(fontSize: 16, color: Colors.white70),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-                foregroundColor: Colors.black,
-                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-              ),
-              child: Text("Explore Packages"),
-            ),
+            _buildTitle(socialConstants.socialHeader),
+            const SizedBox(height: 10),
+            _buildDescription(socialConstants.socialDescription),
+            const SizedBox(height: 20),
+            _buildMainImage(socialConstants.socialImages[0]),
+            const SizedBox(height: 20),
+            _buildTitle(socialConstants.socialSubHeader),
+            const SizedBox(height: 10),
+            _buildDescription(socialConstants.socialDetails),
+            const SizedBox(height: 20),
+            _buildImageRow(socialConstants.socialImages[1], socialConstants.socialImages[2]),
+            const SizedBox(height: 20),
+            _buildMainImage(socialConstants.socialImages[3]),
+            const SizedBox(height: 20),
+            _buildTitle(socialConstants.socialPackages),
+            const SizedBox(height: 10),
+            _buildDescription(socialConstants.socialPackagesDescription),
+            const SizedBox(height: 20),
+            _buildActionButton(),
           ],
         ),
       ),
+    );
+  }
+
+  // 🟢 **AppBar Widget**
+  PreferredSizeWidget _buildAppBar(BuildContext context) {
+    return AppBar(
+      title: const Text(socialConstants.socialTitle, style: TextStyle(color: Colors.white)),
+      centerTitle: true,
+      backgroundColor: Colors.black,
+      iconTheme: const IconThemeData(color: Colors.white),
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.my_library_add_outlined, color: Colors.white),
+        ),
+      ],
+    );
+  }
+
+  // 🟢 **Title Widget**
+  Widget _buildTitle(String title) {
+    return Text(
+      title,
+      style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+    );
+  }
+
+  // 🟢 **Description Widget**
+  Widget _buildDescription(String description) {
+    return Text(description, style: const TextStyle(color: Colors.white70, fontSize: 16));
+  }
+
+  // 🟢 **Single Image Widget**
+  Widget _buildMainImage(String imagePath) {
+    return Container(
+      height: 200,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        image: DecorationImage(
+          image: AssetImage(imagePath),
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  // 🟢 **Two Images Row Widget**
+  Widget _buildImageRow(String leftImage, String rightImage) {
+    return Row(
+      children: [
+        Expanded(child: _buildMainImage(leftImage)),
+        const SizedBox(width: 10),
+        Expanded(child: _buildMainImage(rightImage)),
+      ],
+    );
+  }
+
+  // 🟢 **Action Button Widget**
+  Widget _buildActionButton() {
+    return ElevatedButton(
+      onPressed: () {},
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+      ),
+      child: const Text("Explore Packages"),
     );
   }
 }

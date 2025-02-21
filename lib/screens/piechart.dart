@@ -45,7 +45,7 @@ class _DashbordState extends State<Dashbord> {
         children: [
           const SizedBox(height: 30),
 
-          // ✅ Use ValueListenableBuilder
+         
           ValueListenableBuilder(
             valueListenable: eventlistnotifier,
             builder: (context, value, child) {
@@ -87,7 +87,7 @@ SizedBox(height: 30,),
 
       SizedBox(height: 30,),
 
-          // ✅ Display Event Counts
+        
           ValueListenableBuilder(
             valueListenable: eventlistnotifier,
             builder: (context, value, child) {
@@ -107,7 +107,7 @@ SizedBox(height: 30,),
     );
   }
 
-  /// ✅ Function to Display Event Details
+ 
   Widget _rowForText({required String eventName, required int count, required Color color}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),

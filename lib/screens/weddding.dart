@@ -1,105 +1,99 @@
+import 'package:event_managment/screens/constants.dart';
 import 'package:flutter/material.dart';
 
+
 class Wedding extends StatelessWidget {
+  const Wedding({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Text(
-          "Wedding Events",
-          style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        
-        iconTheme: IconThemeData(color: Colors.white),
-           actions: [
-          IconButton(onPressed: (){
-      
-          }, icon: Icon(Icons.my_library_add_outlined,color: Colors.white,))
-        ],
-      ),
+      appBar: _buildAppBar(context),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Your Dream Wedding Awaits",
-                style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 10),
-              Text(
-                "Experience a once-in-a-lifetime event with exquisite venues, stunning decorations, and world-class catering. Let us make your wedding truly magical.",
-                style: TextStyle(color: Colors.white70, fontSize: 16),
-              ),
-              SizedBox(height: 20),
-              wedography('asset/mrgfuntione.jpg'),
-              // ClipRRect(
-              //   borderRadius: BorderRadius.circular(12),
-              //   child: Image.asset(
-              //     'asset/mrgfuntione.jpg',
-              //     width: double.infinity,
-              //     height: 200,
-              //     fit: BoxFit.cover,
-              //   ),
-              // ),
-              SizedBox(height: 20),
-              Text(
-                "Exclusive Wedding Services",
-                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 10),
-              Column(
-                children: [
-                  weddingServiceItem("Luxury Venues", "Choose from breathtaking locations to celebrate your big day."),
-                   SizedBox(height: 5),
-             wedography('asset/weddingluxuryven.jpeg'),
-             SizedBox(height: 20),
-                  weddingServiceItem("Catering & Cuisine", "Enjoy a customized menu tailored to your preferences."),
-                  SizedBox(height: 5),
-              wedography( 'asset/weddingcater.jpg'),
-              SizedBox(height: 20),
-                  weddingServiceItem("Professional Photography", "Capture every precious moment with our expert photographers."),
-                  SizedBox(height: 5),
-                  wedography('asset/handevnt.jpg'),
-                    SizedBox(height: 20),
-                  weddingServiceItem("Stunning Decorations", "Transform your venue into a dream setting with elegant decor."),
-                   SizedBox(height: 5),
-                   wedography('asset/weddingstunning.webp'),
-                    SizedBox(height: 20),
-                ],
-              ),
-            ],
-          ),
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildTitle(weddingConstants.weddingHeader),
+            const SizedBox(height: 10),
+            _buildDescription(weddingConstants.weddingDescription),
+            const SizedBox(height: 20),
+            _buildImage(weddingConstants.weddingImages[0]),
+            const SizedBox(height: 20),
+            _buildTitle(weddingConstants.weddingServices),
+            const SizedBox(height: 10),
+
+            // 🟢 Wedding Services (Dynamically Loaded from Constants)
+            Column(
+              children: List.generate(weddingConstants.weddingServicesList.length, (index) {
+                final service = weddingConstants.weddingServicesList[index];
+                return Column(
+                  children: [
+                    _buildServiceItem(service["title"]!, service["description"]!),
+                    const SizedBox(height: 5),
+                    _buildImage(weddingConstants.weddingImages[index + 1]),
+                    const SizedBox(height: 20),
+                  ],
+                );
+              }),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  Widget weddingServiceItem(String title, String description) {
+  // 🟢 **AppBar Widget**
+  PreferredSizeWidget _buildAppBar(BuildContext context) {
+    return AppBar(
+      title: const Text(weddingConstants.weddingTitle, style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
+      centerTitle: true,
+      backgroundColor: Colors.black,
+      iconTheme: const IconThemeData(color: Colors.white),
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.my_library_add_outlined, color: Colors.white),
+        ),
+      ],
+    );
+  }
+
+  // 🟢 **Title Widget**
+  Widget _buildTitle(String title) {
+    return Text(
+      title,
+      style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
+    );
+  }
+
+  // 🟢 **Description Widget**
+  Widget _buildDescription(String description) {
+    return Text(description, style: const TextStyle(color: Colors.white70, fontSize: 16));
+  }
+
+  // 🟢 **Wedding Services Widget**
+  Widget _buildServiceItem(String title, String description) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(Icons.check_circle, color: Colors.white, size: 24),
-          SizedBox(width: 10),
+          const Icon(Icons.check_circle, color: Colors.white, size: 24),
+          const SizedBox(width: 10),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   title,
-                  style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                  style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text(
                   description,
-                  style: TextStyle(color: Colors.white70, fontSize: 14),
+                  style: const TextStyle(color: Colors.white70, fontSize: 14),
                 ),
               ],
             ),
@@ -108,16 +102,12 @@ class Wedding extends StatelessWidget {
       ),
     );
   }
- 
- Widget wedography(String imagepath){
-  return  ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                imagepath,
-                  width: double.infinity,
-                  height: 200,
-                  fit: BoxFit.cover,
-                ),
-              );
- }
+
+  // 🟢 **Image Widget**
+  Widget _buildImage(String imagePath) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12),
+      child: Image.asset(imagePath, width: double.infinity, height: 200, fit: BoxFit.cover),
+    );
+  }
 }

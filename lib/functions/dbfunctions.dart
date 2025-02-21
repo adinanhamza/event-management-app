@@ -3,14 +3,16 @@ import 'package:event_managment/model/model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 
-ValueNotifier<List<eventmodel>>eventlistnotifier = ValueNotifier([]);
 
+ValueNotifier<List<eventmodel>> eventlistnotifier= ValueNotifier([]);
 
 void addevent(eventmodel eventdata)async{
   final eventbox = await Hive.openBox<eventmodel>('eventdatabase');
   await eventbox.add(eventdata);
   getallevents();
 }
+
+
 
  Future <void> getallevents()async{
 final eventbox = await Hive.openBox<eventmodel>('eventdatabase');

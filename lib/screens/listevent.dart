@@ -1,14 +1,14 @@
-import 'dart:ffi';
 import 'dart:io';
-
 import 'package:event_managment/functions/dbfunctions.dart';
 import 'package:event_managment/model/model.dart';
+import 'package:event_managment/screens/constants.dart';
 import 'package:event_managment/screens/details.dart';
 import 'package:event_managment/screens/edit.dart';
 import 'package:flutter/material.dart';
 
+
 class Listevent extends StatefulWidget {
- const Listevent({super.key});
+  const Listevent({super.key});
 
   @override
   State<Listevent> createState() => _ListeventState();
@@ -16,93 +16,129 @@ class Listevent extends StatefulWidget {
 
 class _ListeventState extends State<Listevent> {
   @override
-
   Widget build(BuildContext context) {
-    
     getallevents();
-    return SafeArea(child: 
-    Scaffold(
-      backgroundColor: Colors.black,
-      body: Column(
-        children: [
-          SizedBox(height:20,),
-          Center(
-            child: Text('Events',style: TextStyle(
-              color: Colors.white,
-              fontSize: 22,
-              fontWeight: FontWeight.w500,
-              fontStyle: FontStyle.normal
-            ),),
-          ),
-        Expanded(child: 
-        ValueListenableBuilder<List<eventmodel>>(
-          valueListenable: eventlistnotifier,
-           builder: (context,eventlist,child){
-            if(eventlist.isEmpty){
-              return Center(
-                child: Text('No events found',style: TextStyle(
+
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: Column(
+          children: [
+            const SizedBox(height: 20),
+            const Center(
+              child: Text(
+                listeventConstants.eventTitle, // ✅ Use Constants
+                style: TextStyle(
                   color: Colors.white,
-                  fontSize: 18
-                ),),
-              );
-
-            }
-            return ListView.separated(
-              separatorBuilder: (context, index) => Divider(color: Colors.grey,),
-              itemCount: eventlist.length,
-              itemBuilder: (context,index){
-                  final data = eventlist[index];
-                  return Padding(
-                    padding: EdgeInsets.all(18),
-                    child: Card(
-                        elevation: 5,
-                        child: ListTile(
-                          // visualDensity: VisualDensity(horizontal: BorderSide.strokeAlignInside),
-                          tileColor: Colors.white,  
-                          shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(18)),
-                          onTap: () {
-                            
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Details(
-                          eimage: data.image,
-                            index: index,
-                            name: data.name,
-                            phone: data.phone,
-                            date: data.date,
-                            email: data.email,
-                            location: data.location,
-                            venue: data.venue,
-                    
-                          )));
-                          },
-                          leading:  CircleAvatar(
-              backgroundImage: data.image != null && data.image!.isNotEmpty
-                  ? FileImage(File(data.image!))
-                  : AssetImage('asset/avatarcontact.jpg') as ImageProvider,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
-                          title: Text(data.name!,style:TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold
-                          ),),
-                          subtitle: Text(data.date!,style:TextStyle(
-                            color: Colors.black
-                          
-                          ),),
-                          trailing: IconButton(onPressed: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Editbooking(index: index, name: data.name, email: data.email, phone:data.phone , date: data.date, venue: data.venue, location: data.location,imagePath: data.image,),),);
+            Expanded(
+              child: ValueListenableBuilder<List<eventmodel>>(
+                valueListenable: eventlistnotifier,
+                builder: (context, eventlist, child) {
+                  if (eventlist.isEmpty) {
+                    return const Center(
+                      child: Text(
+                        listeventConstants.noEventsFound, // ✅ Use Constants
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                    );
+                  }
 
-                          }, icon: Icon(Icons.edit,color: Colors.black,size: 22,)),
-                        ),
-                    ),
+                  return ListView.separated(
+                    separatorBuilder: (context, index) => const Divider(color: Colors.grey),
+                    itemCount: eventlist.length,
+                    itemBuilder: (context, index) {
+                      final data = eventlist[index];
+                      return _buildEventCard(context, data, index);
+                    },
                   );
-              }
-              
-          );
-
-
-        },),),
-        ],
+                },
+              ),
+            ),
+          ],
+        ),
       ),
-    ));
+    );
+  }
+
+  // 🟢 Event Card Widget
+  Widget _buildEventCard(BuildContext context, eventmodel data, int index) {
+    return Padding(
+      padding: const EdgeInsets.all(18),
+      child: Card(
+        elevation: 5,
+        child: ListTile(
+          tileColor: Colors.white,
+          shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(18)),
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => Details(
+                  eimage: data.image,
+                  index: index,
+                  name: data.name,
+                  phone: data.phone,
+                  date: data.date,
+                  email: data.email,
+                  location: data.location,
+                  venue: data.venue,
+                ),
+              ),
+            );
+          },
+          leading: _buildAvatar(data.image),
+          title: Text(
+            data.name!,
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          subtitle: Text(
+            data.date!,
+            style: const TextStyle(color: Colors.black),
+          ),
+          trailing: _buildEditButton(context, data, index),
+        ),
+      ),
+    );
+  }
+
+  // 🟢 Avatar Widget
+  Widget _buildAvatar(String? imagePath) {
+    return CircleAvatar(
+      backgroundImage: imagePath != null && imagePath.isNotEmpty
+          ? FileImage(File(imagePath))
+          : const AssetImage(listeventConstants.defaultProfileImage) as ImageProvider,
+    );
+  }
+
+  // 🟢 Edit Button Widget
+  Widget _buildEditButton(BuildContext context, eventmodel data, int index) {
+    return IconButton(
+      tooltip: listeventConstants.editButtonTooltip, // ✅ Use Constants
+      icon: const Icon(Icons.edit, color: Colors.black, size: 22),
+      onPressed: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => EditBooking(
+              index: index,
+              name: data.name,
+              email: data.email,
+              phone: data.phone,
+              date: data.date,
+              venue: data.venue,
+              location: data.location,
+              imagePath: data.image,
+            ),
+          ),
+        );
+      },
+    );
   }
 }

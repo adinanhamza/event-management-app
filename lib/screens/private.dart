@@ -1,103 +1,117 @@
+import 'package:event_managment/screens/constants.dart';
 import 'package:flutter/material.dart';
 
-class Special extends StatelessWidget {
+
+class Private extends StatelessWidget {
+  const Private({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        title: Text("Special Events", style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.black,
-        iconTheme: IconThemeData(color: Colors.white),
-        centerTitle: true
-        ,
-        actions: [
-          IconButton(onPressed: (){
-      
-          }, icon: Icon(Icons.my_library_add_outlined,color: Colors.white,))
-        ],
-      ),
+      appBar: _buildAppBar(context),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Exclusive Special Events",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                "Celebrate your special moments with our tailor-made events, ensuring unforgettable experiences.",
-                style: TextStyle(color: Colors.white70, fontSize: 16),
-              ),
-              SizedBox(height: 20),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset("asset/privatepeo.jpg", fit: BoxFit.cover),
-              ),
-
-              SizedBox(height: 20),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset("asset/privatelux.jpg", fit: BoxFit.cover),
-              ),
-               SizedBox(height: 20),
-               ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset("asset/privatetema.jpg", fit: BoxFit.cover),
-              ),
-               SizedBox(height: 20),
-              Text(
-                "Our Services",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 10),
-              ListTile(
-                leading: Icon(Icons.star, color: Colors.white),
-                title: Text("Luxury & VIP Experiences", style: TextStyle(color: Colors.white)),
-                subtitle: Text("Exclusive venues, premium service, and high-end experiences.", style: TextStyle(color: Colors.white70)),
-              ),
-              
-             
-              ListTile(
-                leading: Icon(Icons.music_note, color: Colors.white),
-                title: Text("Live Entertainment", style: TextStyle(color: Colors.white)),
-                subtitle: Text("World-class performers, DJs, and shows tailored for your event.", style: TextStyle(color: Colors.white70)),
-              ),
-              ListTile(
-                leading: Icon(Icons.celebration, color: Colors.white),
-                title: Text("Theme Parties & Festivals", style: TextStyle(color: Colors.white)),
-                subtitle: Text("Unique themed events for birthdays, anniversaries, and more.", style: TextStyle(color: Colors.white70)),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.black,
-                  padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                ),
-                child: Text("Plan Your Special Event"),
-              ),
-            ],
-          ),
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildTitle(specialConstants.privateSubtitle),
+            const SizedBox(height: 10),
+            _buildDescription(specialConstants.privateDescription),
+            const SizedBox(height: 20),
+            ..._buildImageGallery(specialConstants.privateImages),
+            const SizedBox(height: 20),
+            _buildTitle(specialConstants.privateServicesTitle),
+            const SizedBox(height: 10),
+            ..._buildServiceList(specialConstants.privateServices),
+            const SizedBox(height: 20),
+            _buildActionButton(),
+          ],
         ),
       ),
     );
   }
+
+  // 🟢 **AppBar Widget**
+  PreferredSizeWidget _buildAppBar(BuildContext context) {
+    return AppBar(
+      title: const Text(specialConstants.privateTitle, style: TextStyle(color: Colors.white)),
+      backgroundColor: Colors.black,
+      iconTheme: const IconThemeData(color: Colors.white),
+      centerTitle: true,
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.my_library_add_outlined, color: Colors.white),
+        ),
+      ],
+    );
+  }
+
+  // 🟢 **Title Widget**
+  Widget _buildTitle(String title) {
+    return Text(
+      title,
+      style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+    );
+  }
+
+  // 🟢 **Description Widget**
+  Widget _buildDescription(String description) {
+    return Text(description, style: const TextStyle(color: Colors.white70, fontSize: 16));
+  }
+
+  // 🟢 **Image Gallery Widget**
+  List<Widget> _buildImageGallery(List<String> images) {
+    return images
+        .map((imagePath) => Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(imagePath, fit: BoxFit.cover),
+              ),
+            ))
+        .toList();
+  }
+
+  // 🟢 **Service List Widget**
+  List<Widget> _buildServiceList(List<Map<String, String>> services) {
+    return services
+        .map((service) => ListTile(
+              leading: Icon(
+                _getIcon(service['icon']!), // Converts string to icon
+                color: Colors.white,
+              ),
+              title: Text(service['title']!, style: const TextStyle(color: Colors.white)),
+              subtitle: Text(service['subtitle']!, style: const TextStyle(color: Colors.white70)),
+            ))
+        .toList();
+  }
+
+  // 🟢 **Action Button Widget**
+  Widget _buildActionButton() {
+    return ElevatedButton(
+      onPressed: () {},
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+      ),
+      child: const Text("Plan Your Special Event"),
+    );
+  }
+
+  // 🟢 **Convert String to IconData**
+  IconData _getIcon(String iconName) {
+    switch (iconName) {
+      case "star":
+        return Icons.star;
+      case "music_note":
+        return Icons.music_note;
+      case "celebration":
+        return Icons.celebration;
+      default:
+        return Icons.event;
+    }
+  }
 }
-
-
-
-
-

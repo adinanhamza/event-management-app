@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'package:event_managment/functions/dbfunctions.dart';
+import 'package:event_managment/screens/constants.dart';
 import 'package:event_managment/screens/piechart.dart';
 import 'package:flutter/material.dart';
+
 
 class Details extends StatefulWidget {
   final int index;
@@ -31,7 +33,7 @@ class _DetailsState extends State<Details> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: const Text(
-          'EVENT DETAILS',
+          detailsConstants.eventDetailsTitle, // ✅ Use Constants
           style: TextStyle(color: Colors.white, fontSize: 22),
         ),
         centerTitle: true,
@@ -56,53 +58,48 @@ class _DetailsState extends State<Details> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-           
+              // Profile Image
               Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(color: Colors.white, width: 2),
                   boxShadow: [
-                    BoxShadow(
-                      color: Colors.white10,
-                      blurRadius: 10,
-                      spreadRadius: 2,
-                    ),
+                    BoxShadow(color: Colors.white10, blurRadius: 10, spreadRadius: 2),
                   ],
                 ),
                 child: CircleAvatar(
                   radius: 75,
                   backgroundImage: widget.eimage != null && widget.eimage!.isNotEmpty
                       ? FileImage(File(widget.eimage!))
-                      : const AssetImage('asset/avatarcontact.jpg') as ImageProvider,
+                      : const AssetImage(detailsConstants.defaultProfileImage) as ImageProvider, // ✅ Use Constants
                 ),
               ),
 
               const SizedBox(height: 20),
 
+              // Details Section
               Container(
                 decoration: BoxDecoration(
                   color: Colors.grey[900],
                   borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(color: Colors.black54, blurRadius: 10, spreadRadius: 2),
-                  ],
+                  boxShadow: [BoxShadow(color: Colors.black54, blurRadius: 10, spreadRadius: 2)],
                 ),
                 padding: const EdgeInsets.all(16),
                 child: Column(
                   children: [
-                    buildDetailRow(Icons.person, "Name", widget.name!),
-                    buildDetailRow(Icons.email, "Email", widget.email!),
-                    buildDetailRow(Icons.phone, "Phone", widget.phone!),
-                    buildDetailRow(Icons.date_range, "Date", widget.date!),
-                    buildDetailRow(Icons.place, "Location", widget.location!),
-                    buildDetailRow(Icons.event, "Venue", widget.venue!),
+                    buildDetailRow(Icons.person, detailsConstants.labelName, widget.name!),
+                    buildDetailRow(Icons.email, detailsConstants.labelEmail, widget.email!),
+                    buildDetailRow(Icons.phone, detailsConstants.labelPhone, widget.phone!),
+                    buildDetailRow(Icons.date_range, detailsConstants.labelDate, widget.date!),
+                    buildDetailRow(Icons.place, detailsConstants.labelLocation, widget.location!),
+                    buildDetailRow(Icons.event,detailsConstants.labelVenue, widget.venue!),
                   ],
                 ),
               ),
 
               const SizedBox(height: 25),
 
-              // 🟢 Button for Chart Navigation
+              // View Chart Button
               ElevatedButton(
                 onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => Dashbord())),
                 style: ElevatedButton.styleFrom(
@@ -112,7 +109,10 @@ class _DetailsState extends State<Details> {
                   shadowColor: Colors.white30,
                   elevation: 6,
                 ),
-                child: const Text("View Chart", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                child: const Text(
+                 detailsConstants.viewChartButton, // ✅ Use Constants
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
               ),
             ],
           ),
@@ -121,7 +121,8 @@ class _DetailsState extends State<Details> {
     );
   }
 
-  Widget buildDetailRow(IconData icon,String lable,String value) {
+  // Reusable Detail Row
+  Widget buildDetailRow(IconData icon, String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
@@ -130,7 +131,7 @@ class _DetailsState extends State<Details> {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              "$lable: ${value ?? 'No Data'}",
+              "$label: $value",
               style: const TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
             ),
           ),
