@@ -1,9 +1,9 @@
 import 'dart:io';
-import 'package:event_managment/functions/dbfunctions.dart';
+import 'package:event_managment/controller/dbfunctions.dart';
 import 'package:event_managment/model/model.dart';
-import 'package:event_managment/screens/constants.dart';
-import 'package:event_managment/screens/details.dart';
-import 'package:event_managment/screens/edit.dart';
+import 'package:event_managment/view/constants/constants.dart';
+import 'package:event_managment/view/details/details.dart';
+import 'package:event_managment/view/edit/edit.dart';
 import 'package:flutter/material.dart';
 
 

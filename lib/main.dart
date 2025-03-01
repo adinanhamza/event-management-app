@@ -2,7 +2,7 @@
 import 'package:event_managment/model/model.dart';
 import 'package:event_managment/model/vendormodel.dart';
 
-import 'package:event_managment/screens/splashscreen.dart';
+import 'package:event_managment/view/splashscreen/splashscreen.dart';
 
 import 'package:flutter/material.dart';
 

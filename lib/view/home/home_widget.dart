@@ -1,10 +1,12 @@
   import 'package:carousel_slider/carousel_slider.dart';
-import 'package:event_managment/functions/vmfunctions.dart';
+import 'package:event_managment/controller/vmfunctions.dart';
 import 'package:event_managment/model/vendormodel.dart';
-import 'package:event_managment/screens/constants.dart';
-import 'package:event_managment/screens/coporate.dart';
-import 'package:event_managment/screens/social.dart';
-import 'package:event_managment/screens/whislist.dart';
+import 'package:event_managment/view/constants/constants.dart';
+import 'package:event_managment/view/coporate/coporate.dart';
+import 'package:event_managment/view/private/private.dart';
+import 'package:event_managment/view/social/social.dart';
+import 'package:event_managment/view/wedding/weddding.dart';
+import 'package:event_managment/view/whislist/whislist.dart';
 import 'package:flutter/material.dart';
 Widget buildImageCarousel() {
     return CarouselSlider(
@@ -149,7 +151,7 @@ Widget buildImageCarousel() {
     );
   }
 
-Widget buildCategoriesSection(BuildContext context) {
+Widget buildCategoriesSection(BuildContext context){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -165,32 +167,55 @@ Widget buildCategoriesSection(BuildContext context) {
           ),
         ),
         const SizedBox(height: 20),
-        buildCategoryRow(context),
-        const SizedBox(height: 20),
-        buildCategoryRow(context),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+buildCategoryCard(title: AppConstants.catCorporate, icon: Icons.business, onTap: () {
+  navigateTo(Corporate(), context);
+},),
+buildCategoryCard(title: AppConstants.catSocial, icon: Icons.group, onTap: () {
+
+  navigateTo(Social(), context);
+},)
+          ],
+        ),
+         const SizedBox(height: 20),
+       Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+buildCategoryCard(title: AppConstants.catSpecial, icon: Icons.celebration, onTap: () {
+  navigateTo(Private(), context);
+},),
+buildCategoryCard(title: AppConstants.catWedding, icon: Icons.web, onTap: () {
+
+  navigateTo(Wedding(), context);
+},)
+          ],
+        )
+     
       ],
     );
   }
 
 
 
-Widget buildCategoryRow(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        buildCategoryCard(
-          title: AppConstants.catSocial,
-          icon: Icons.group,
-          onTap: () => navigateTo(Social(),context),
-        ),
-        buildCategoryCard(
-          title: AppConstants.catCorporate,
-          icon: Icons.business,
-          onTap: () => navigateTo(Corporate(),context),
-        ),
-      ],
-    );
-  }
+// Widget buildCategory(BuildContext context,
+// String title,
+
+// ) {
+
+//         buildCategoryCard(
+//           title: title,
+//           icon: Icons.group,
+//           onTap: () => navigateTo(Social(),context),
+//         ),
+//         buildCategoryCard(
+//           title: title,
+//           icon: Icons.business,
+//           onTap: () => navigateTo(Corporate(),context),
+//         ),
+      
+//   }
 
  void showFavoriteSnackbar(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(

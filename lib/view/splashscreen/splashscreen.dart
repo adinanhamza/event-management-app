@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:event_managment/screens/bottomnav.dart';
+import 'package:event_managment/view/bottomnav/bottomnav.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 

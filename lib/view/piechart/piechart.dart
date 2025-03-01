@@ -1,6 +1,6 @@
-import 'package:event_managment/functions/dbfunctions.dart';
-import 'package:event_managment/screens/coporate.dart';
-import 'package:event_managment/screens/weddding.dart';
+import 'package:event_managment/controller/dbfunctions.dart';
+import 'package:event_managment/view/coporate/coporate.dart';
+import 'package:event_managment/view/wedding/weddding.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 

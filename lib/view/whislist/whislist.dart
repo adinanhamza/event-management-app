@@ -1,6 +1,6 @@
-import 'package:event_managment/functions/vmfunctions.dart';
+import 'package:event_managment/controller/vmfunctions.dart';
 import 'package:event_managment/model/vendormodel.dart';
-import 'package:event_managment/screens/constants.dart';
+import 'package:event_managment/view/constants/constants.dart';
 
 import 'package:flutter/material.dart';
 

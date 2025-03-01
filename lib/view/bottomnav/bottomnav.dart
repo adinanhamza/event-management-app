@@ -1,7 +1,7 @@
-import 'package:event_managment/screens/account.dart';
-import 'package:event_managment/screens/booking.dart';
-import 'package:event_managment/screens/home/homescreen.dart';
-import 'package:event_managment/screens/listevent.dart';
+import 'package:event_managment/view/account/account.dart';
+import 'package:event_managment/view/booking/booking.dart';
+import 'package:event_managment/view/home/homescreen.dart';
+import 'package:event_managment/view/listevent/listevent.dart';
 import 'package:flutter/material.dart';
 
 class Bottomnav extends StatefulWidget {

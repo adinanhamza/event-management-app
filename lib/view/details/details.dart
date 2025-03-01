@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'package:event_managment/functions/dbfunctions.dart';
-import 'package:event_managment/screens/constants.dart';
-import 'package:event_managment/screens/piechart.dart';
+import 'package:event_managment/controller/dbfunctions.dart';
+import 'package:event_managment/view/constants/constants.dart';
+import 'package:event_managment/view/piechart/piechart.dart';
 import 'package:flutter/material.dart';
 
 

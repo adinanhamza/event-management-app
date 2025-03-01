@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:event_managment/functions/dbfunctions.dart';
+import 'package:event_managment/controller/dbfunctions.dart';
 import 'package:event_managment/model/model.dart';
-import 'package:event_managment/screens/constants.dart';
+import 'package:event_managment/view/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -317,8 +317,8 @@ class _bookingscreenState extends State<Bookingscreen> {
         image: selectedImage?.path ?? '');
 
     addevent(evendata);
-    // Navigator.of(context)
-        // .push(MaterialPageRoute(builder: (context) => Homescreen()));
+    Navigator.of(context).pop();
+      
   }
 
 // Gallery picker

@@ -1,10 +1,10 @@
-import 'package:event_managment/functions/dbfunctions.dart';
-import 'package:event_managment/functions/vmfunctions.dart';
+import 'package:event_managment/controller/dbfunctions.dart';
+import 'package:event_managment/controller/vmfunctions.dart';
 import 'package:event_managment/model/model.dart';
 import 'package:event_managment/model/vendormodel.dart';
-import 'package:event_managment/screens/constants.dart';
-import 'package:event_managment/screens/details.dart';
-import 'package:event_managment/screens/home/home_widget.dart';
+import 'package:event_managment/view/constants/constants.dart';
+import 'package:event_managment/view/details/details.dart';
+import 'package:event_managment/view/home/home_widget.dart';
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatefulWidget {
