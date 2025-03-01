@@ -98,7 +98,6 @@ class _EditBookingState extends State<EditBooking> {
     );
   }
 
-  // 🟢 Info Box
   Widget _buildInfoBox() {
     return Container(
       padding: const EdgeInsets.all(20),
@@ -123,7 +122,7 @@ class _EditBookingState extends State<EditBooking> {
     );
   }
 
-  // 🟢 Image Picker
+ 
   Widget _buildImagePicker() {
     return Column(
       children: [
@@ -145,7 +144,7 @@ class _EditBookingState extends State<EditBooking> {
     );
   }
 
-  // 🟢 Form Fields
+ 
   Widget _buildTextField(TextEditingController controller, String label, IconData icon, {bool isPhone = false}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
@@ -163,7 +162,7 @@ class _EditBookingState extends State<EditBooking> {
     );
   }
 
-  // 🟢 Date Picker Field
+
   Widget _buildDateField() {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
@@ -180,7 +179,7 @@ class _EditBookingState extends State<EditBooking> {
     );
   }
 
-  // 🟢 Submit Button
+ 
   Widget _buildSubmitButton() {
     return ElevatedButton(
       onPressed: editBooking,
@@ -192,7 +191,7 @@ class _EditBookingState extends State<EditBooking> {
     );
   }
 
-  // 🟢 Select Date
+  
   Future<void> _selectDate(BuildContext context) async {
     final picked = await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(2000), lastDate: DateTime(2100));
     if (picked != null) {
@@ -200,15 +199,31 @@ class _EditBookingState extends State<EditBooking> {
     }
   }
 
-  // 🟢 Pick Image
+ 
   Future<void> pickGalleryImage() async {
     final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedImage != null) setState(() => selectedImage = File(pickedImage.path));
   }
 
-  // 🟢 Edit Booking
+ 
   void editBooking() {
     final editedData = eventmodel(name: nameController.text, phone: phoneController.text, email: emailController.text, date: dateController.text, venue: venueController.text, location: locationController.text, image: selectedImage?.path ?? '');
     editeevent(editedData, widget.index);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Row(
+        children: [
+          Icon(
+            Icons.arrow_forward,
+            color: Colors.white,
+          ),
+          Text( BookingConstants.submissionSuccessMessage),
+        ],
+      ),
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.green,
+      margin: EdgeInsets.all(20),
+    ));
+    Navigator.of(context).pop();
+         
   }
 }

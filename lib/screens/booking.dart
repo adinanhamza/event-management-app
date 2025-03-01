@@ -197,7 +197,7 @@ class _bookingscreenState extends State<Bookingscreen> {
           floatingLabelBehavior: FloatingLabelBehavior.never,
           label: const Text(BookingConstants.dateLabel),
           prefixIcon: IconButton(
-            onPressed: () => selecteddate,
+            onPressed: () => selectDate(context),
             icon: const Icon(Icons.date_range_outlined),
           ),
           border: OutlineInputBorder(
@@ -334,7 +334,7 @@ class _bookingscreenState extends State<Bookingscreen> {
   }
 
 
-Future<void> _selectDate(BuildContext context) async {
+Future<void> selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
